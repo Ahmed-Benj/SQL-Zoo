@@ -20,8 +20,8 @@ SQL Queries - Databases Concepts
 
 👤 **Ahmed Ben Jmii**
 
-- Github [@githubhandle](https://github.com/Ahmed-Benj)
-- Linkedin [linkedin](https://www.linkedin.com/in/ahmed-b-05600992/)
+- [Github](https://github.com/Ahmed-Benj)
+- [linkedin](https://www.linkedin.com/in/ahmed-b-05600992/)
 
 ## 🤝 Contributing
 
