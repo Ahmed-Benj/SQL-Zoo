@@ -15,7 +15,7 @@ SELECT name, area FROM world
   WHERE area BETWEEN 200000 AND 250000
 
 -- **********************************************************************************************************************************
--- **********************************************************SELECT From World*******************************************************
+-- ********************************************************** SELECT From World *****************************************************
 -- **********************************************************************************************************************************
 
 -- Introduction 1. show the name, continent and population of all countries
@@ -82,10 +82,78 @@ SELECT name
 WHERE name LIKE '%a%' AND name LIKE '%e%' AND name LIKE '%i%' AND name LIKE '%o%' AND name LIKE '%u%' AND name NOT LIKE '% %';
 
 -- **********************************************************************************************************************************
--- **********************************************************************************************************************************
+-- ************************************************************* SELECT From Nobel **************************************************
 -- **********************************************************************************************************************************
 
+-- Winners from 1950 1. Change the query shown so that it displays Nobel prizes for 1950.
+SELECT yr, subject, winner
+  FROM nobel
+ WHERE yr = 1950
 
+-- 1962 Literature 2. Show who won the 1962 prize for Literature.
+SELECT winner
+  FROM nobel
+ WHERE yr = 1962
+   AND subject = 'Literature'
+
+-- Albert Einstein 3. Show the year and subject that won 'Albert Einstein' his prize.
+SELECT yr, subject
+  FROM nobel
+ WHERE winner= 'Albert Einstein'
+
+-- Recent Peace Prizes 4. Give the name of the 'Peace' winners since the year 2000, including 2000.
+SELECT winner
+  FROM nobel
+ WHERE Subject= 'Peace' AND yr >= 2000
+
+-- Literature in the 1980's 5. Show all details (yr, subject, winner) of the Literature prize winners for 1980 to 1989 inclusive.
+SELECT yr,subject,winner
+  FROM nobel
+ WHERE Subject= 'Literature' AND yr BETWEEN 1980 AND 1989;
+
+-- Only Presidents 6.
+SELECT * FROM nobel
+ WHERE winner IN ('Theodore Roosevelt','Woodrow Wilson','Jimmy Carter','Barack Obama')
+
+-- John 7. Show the winners with first name John
+SELECT winner FROM nobel
+ WHERE winner LIKE 'john%'
+
+-- Chemistry and Physics from different years 8. Show the year, subject, and name of Physics winners for 1980 together with the Chemistry winners for 1984.
+SELECT yr,subject,winner
+  FROM nobel
+ WHERE (Subject = 'Physics' AND yr = 1980) OR (Subject = 'Chemistry' AND yr = 1984);
+
+-- Exclude Chemists and Medics 9. Show the year, subject, and name of winners for 1980 excluding Chemistry and Medicine
+SELECT yr,subject,winner
+  FROM nobel
+ WHERE Subject NOT IN('Chemistry','Medicine') AND yr = 1980;
+
+-- Early Medicine, Late Literature 10.
+SELECT yr,subject,winner
+  FROM nobel
+ WHERE (Subject = 'Medicine' AND yr < 1910) OR (Subject = 'Literature' AND yr >= 2004);
+
+-- Umlaut 11. Find all details of the prize won by PETER GRÜNBERG
+SELECT *
+  FROM nobel
+ WHERE winner = 'PETER GRÜNBERG'
+
+-- Apostrophe 12. Find all details of the prize won by EUGENE O'NEILL
+SELECT *
+  FROM nobel
+ WHERE winner LIKE 'EUGENE O_NEILL'
+
+-- Knights of the realm 13. Knights in order
+SELECT winner,yr,subject
+  FROM nobel
+ WHERE winner LIKE 'Sir%' ORDER BY yr DESC ;
+
+-- Chemistry and Physics last 14. Show the 1984 winners and subject ordered by subject and winner name; but list Chemistry and Physics last.
+SELECT winner, subject
+  FROM nobel
+ WHERE yr=1984
+ ORDER BY subject IN ('Physics','Chemistry'),subject ,winner 
 
 
 
