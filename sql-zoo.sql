@@ -207,3 +207,40 @@ WHERE continent NOT IN
 
 -- Some countries have populations more than three times that of any of their neighbours (in the same continent). Give the countries and continents.
 SELECT a.name, a.continent FROM world a WHERE population > ALL(SELECT population*3 FROM world b WHERE a.continent=b.continent AND a.name != b.name)
+
+-- **********************************************************************************************************************************
+-- ************************************************************* SUM and COUNT ******************************************************
+-- **********************************************************************************************************************************
+
+-- Total world population 1. Show the total population of the world.
+SELECT SUM(population)
+FROM world
+
+-- List of continents 2. List all the continents - just once each.
+SELECT DISTINCT continent FROM world
+
+-- GDP of Africa 3. Give the total GDP of Africa
+SELECT SUM(gdp) FROM world WHERE continent = 'Africa'
+
+-- Count the big countries 4. How many countries have an area of at least 1000000
+SELECT COUNT(*) FROM world WHERE area >= 1000000
+
+-- Baltic states population 5. What is the total population of ('Estonia', 'Latvia', 'Lithuania')
+SELECT SUM(population) FROM world WHERE name IN ('Estonia', 'Latvia', 'Lithuania')
+
+-- Counting the countries of each continent 6. For each continent show the continent and number of countries.
+SELECT continent, COUNT(name) FROM world GROUP BY continent
+
+-- Counting big countries in each continent 7. For each continent show the continent and number of countries with populations of at least 10 million.
+SELECT continent, COUNT(name) FROM world WHERE population/1000000>10 GROUP BY continent
+
+-- Counting big continents 8. List the continents that have a total population of at least 100 million.
+SELECT continent FROM world GROUP BY continent HAVING SUM(population/1000000)>100
+
+
+
+
+
+
+
+
